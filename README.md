@@ -25,3 +25,23 @@
 		```
 		mvn spring-boot:run
 		```
+
+3. Restful API
+	* GET：http://localhost:8080/customers
+	* GET：http://localhost:8080/customers/{id}
+	* POST：http://localhost:8080/customers
+		* example request body
+			```
+			 {
+				"name": "sam"
+			 }
+			```
+	* PUT：http://localhost:8080/customers
+		* example request body
+			```
+			 {
+				"name": "samLien",
+				"id":1
+			 }
+			```
+	* DELETE：http://localhost:8080/customers/{id}
