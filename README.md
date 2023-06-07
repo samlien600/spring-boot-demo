@@ -11,8 +11,7 @@
 				id int auto_increment primary key,
 				name varchar(30) null
 			);
-		```
-		
+			```
 	* update application.propertirs
 	* path：C:..\spring-boot-demo\src\main\resources\application.propertirs
 	* update your datasource database、username、password
