@@ -1,8 +1,8 @@
 package com.example.demo;
 
 public class Customer {
-    String name;
-    Integer id;
+   private String name;
+   private Integer id;
 
     public String getName() {
         return name;
