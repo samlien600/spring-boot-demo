@@ -13,7 +13,7 @@
 			);
 			```
 	* update application.propertirs
-	* path：C:..\spring-boot-demo\src\main\resources\application.propertirs
+	* path：..\src\main\resources\application.propertirs
 	* update your datasource database、username、password
 
 2. run spring boot
