@@ -3,8 +3,10 @@ package com.example.demo.service;
 import com.example.demo.Customer;
 import com.example.demo.dao.CustomerDao;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
@@ -26,6 +28,9 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public ResponseEntity<String> insertList(List<Customer> customerList) {
+        if (customerList.size() > 10) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("can not insert greater than 10 row");
+        }
         return customerDao.insertList(customerList);
     }
 

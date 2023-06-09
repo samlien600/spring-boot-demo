@@ -20,36 +20,38 @@ import java.util.Map;
 
 @Repository
 public class CustomerDaoImpl implements CustomerDao {
-
     @Autowired
     public NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+    private final String GET_BY_ID_SQL = "select id,name from customer where id=:id";
+    private final String INSERT_SQL = "insert into customer(name) value (:name)";
+    private final String INSERT_LIST_SQL = "insert into customer(name) value (:name)";
+    private final String UPDATE_SQL = "update customer set name=:name where id=:id";
+    private final String DELETE_SQL = "delete from customer where id=:id";
 
     @Override
     public ResponseEntity<Customer> getById(Integer id) {
-        String sql = "select id,name from customer where id=:id";
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("id", id);
-        Customer customer = namedParameterJdbcTemplate.queryForObject(sql, map, new CustomerRowMapper());
-
-        return ResponseEntity.status(HttpStatus.OK).body(customer);
+        List<Customer> customerList = namedParameterJdbcTemplate.query(GET_BY_ID_SQL, map, new CustomerRowMapper());
+        if (!customerList.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.OK).body(customerList.get(0));
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(null);
     }
 
     @Override
     public ResponseEntity<String> insert(@RequestBody Customer customer) {
         System.out.println("insert ~");
-        String sql = "insert into customer(name) value (:name)";
         Map<String,Object> map = new HashMap<String, Object>();
         map.put("name", customer.getName());
         KeyHolder keyHolder = new GeneratedKeyHolder();
-        namedParameterJdbcTemplate.update(sql, new MapSqlParameterSource(map), keyHolder);
-        System.out.println("getKey==" +keyHolder.getKey());
+        namedParameterJdbcTemplate.update(INSERT_SQL, new MapSqlParameterSource(map), keyHolder);
 
         return ResponseEntity.status(HttpStatus.OK).body("create row");
     }
 
     @Override
     public ResponseEntity<String> insertList(@RequestBody List<Customer> customerList) {
-        String sql = "insert into customer(name) value (:name)";
         MapSqlParameterSource[] mapSource = new MapSqlParameterSource[customerList.size()];
         int i = 0;
         for (Customer stu : customerList) {
@@ -58,29 +60,26 @@ public class CustomerDaoImpl implements CustomerDao {
             i++;
         }
 
-        namedParameterJdbcTemplate.batchUpdate(sql, mapSource);
+        namedParameterJdbcTemplate.batchUpdate(INSERT_LIST_SQL, mapSource);
         return ResponseEntity.status(HttpStatus.OK).body("batch insert");
     }
 
     @Override
     public ResponseEntity<String> update(Customer customer) {
-        String sql = "update customer set name=:name where id=:id";
         Map<String,Object> map = new HashMap<String, Object>();
         map.put("name", customer.getName());
         map.put("id", customer.getId());
-        namedParameterJdbcTemplate.update(sql, new MapSqlParameterSource(map));
+        namedParameterJdbcTemplate.update(UPDATE_SQL, new MapSqlParameterSource(map));
 
         return ResponseEntity.status(HttpStatus.OK).body("update row");
     }
 
     @Override
     public ResponseEntity<String> delete(@PathVariable int id) {
-        System.out.println("delete~");
         Map<String, Object> map = new HashMap<String, Object>();
-        String sql = "delete from customer where id=:id";
         map.put("id", id);
 
-        namedParameterJdbcTemplate.update(sql, map);
+        namedParameterJdbcTemplate.update(DELETE_SQL, map);
         return ResponseEntity.status(HttpStatus.OK).body("delete row");
     }
 
