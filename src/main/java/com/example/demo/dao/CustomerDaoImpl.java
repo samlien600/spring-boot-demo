@@ -1,7 +1,7 @@
 package com.example.demo.dao;
 
-import com.example.demo.Customer;
-import com.example.demo.CustomerRowMapper;
+import com.example.demo.model.Customer;
+import com.example.demo.mapper.CustomerRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,7 +9,6 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,11 +21,11 @@ import java.util.Map;
 public class CustomerDaoImpl implements CustomerDao {
     @Autowired
     public NamedParameterJdbcTemplate namedParameterJdbcTemplate;
-    private final String GET_BY_ID_SQL = "select id,name from customer where id=:id";
-    private final String INSERT_SQL = "insert into customer(name) value (:name)";
-    private final String INSERT_LIST_SQL = "insert into customer(name) value (:name)";
-    private final String UPDATE_SQL = "update customer set name=:name where id=:id";
-    private final String DELETE_SQL = "delete from customer where id=:id";
+    private final String GET_BY_ID_SQL = "select id,name from customers where id=:id";
+    private final String INSERT_SQL = "insert into customers(name) value (:name)";
+    private final String INSERT_LIST_SQL = "insert into customers(name) value (:name)";
+    private final String UPDATE_SQL = "update customers set name=:name where id=:id";
+    private final String DELETE_SQL = "delete from customers where id=:id";
 
     @Override
     public ResponseEntity<Customer> getById(Integer id) {

@@ -1,6 +1,6 @@
 package com.example.demo.service;
 
-import com.example.demo.Customer;
+import com.example.demo.model.Customer;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
