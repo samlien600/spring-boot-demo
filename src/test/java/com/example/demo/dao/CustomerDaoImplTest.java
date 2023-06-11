@@ -21,16 +21,16 @@ public class CustomerDaoImplTest {
 
     @Test
     public void getById() {
-        ResponseEntity<Customer> customer = customerDao.getById(1);
-        assertNotNull(customer.getBody());
-        assertEquals("sam", customer.getBody().getName());
+        Customer customer = customerDao.getById(1);
+        assertNotNull(customer);
+        assertEquals("sam", customer.getName());
     }
 
     @Transactional
     @Test
     public void delete() {
-        ResponseEntity<String> customer = customerDao.delete(1);
-        assertNotNull(customer.getBody());
+        String customer = customerDao.delete(1);
+        assertNotNull(customer);
     }
 
     @Transactional
@@ -39,8 +39,8 @@ public class CustomerDaoImplTest {
         Customer customer = new Customer();
         customer.setId(1);
         customer.setName("demo");
-        ResponseEntity<String> result = customerDao.update(customer);
-        assertEquals("update row", result.getBody());
+        String result = customerDao.update(customer);
+        assertEquals("update row", result);
     }
 
     @Transactional
@@ -48,8 +48,8 @@ public class CustomerDaoImplTest {
     public void insert() {
         Customer customer = new Customer();
         customer.setName("test");
-        ResponseEntity<String> result = customerDao.insert(customer);
-        assertEquals("create row", result.getBody());
+        String result = customerDao.insert(customer);
+        assertEquals("create row", result);
     }
 
     @Transactional
@@ -63,7 +63,7 @@ public class CustomerDaoImplTest {
             custome.setName("test" +i);
             customerList.add(custome);
         }
-        ResponseEntity<String> result = customerDao.insertList(customerList);
-        assertEquals("batch insert", result.getBody());
+        String result = customerDao.insertList(customerList);
+        assertEquals("batch insert", result);
     }
 }
