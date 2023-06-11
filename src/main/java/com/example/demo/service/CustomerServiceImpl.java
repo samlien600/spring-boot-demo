@@ -16,30 +16,30 @@ public class CustomerServiceImpl implements CustomerService {
     private CustomerDao customerDao;
 
     @Override
-    public ResponseEntity<Customer> getById(Integer id) {
+    public Customer getById(Integer id) {
         return customerDao.getById(id);
     }
 
     @Override
-    public ResponseEntity<String> insert(Customer customer) {
+    public String insert(Customer customer) {
         return customerDao.insert(customer);
     }
 
     @Override
-    public ResponseEntity<String> insertList(List<Customer> customerList) {
+    public String insertList(List<Customer> customerList) {
         if (customerList.size() > 10) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("can not insert greater than 10 row");
+            return "can not insert greater than 10 row";
         }
         return customerDao.insertList(customerList);
     }
 
     @Override
-    public ResponseEntity<String> update(Customer customer) {
+    public String update(Customer customer) {
         return customerDao.update(customer);
     }
 
     @Override
-    public ResponseEntity<String> delete(int id) {
+    public String delete(int id) {
         return customerDao.delete(id);
     }
 }

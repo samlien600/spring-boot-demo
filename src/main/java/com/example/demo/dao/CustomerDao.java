@@ -8,11 +8,11 @@ import java.util.List;
 
 public interface CustomerDao {
 
-    ResponseEntity<Customer> getById(Integer studentId);
-    ResponseEntity<String> insert(Customer customer);
-    ResponseEntity<String> insertList(List<Customer> customerList);
-    ResponseEntity<String> update(Customer customer);
-    ResponseEntity<String> delete(int id);
+    Customer getById(Integer studentId);
+    String insert(Customer customer);
+    String insertList(List<Customer> customerList);
+    String update(Customer customer);
+    String delete(int id);
 
 }
 

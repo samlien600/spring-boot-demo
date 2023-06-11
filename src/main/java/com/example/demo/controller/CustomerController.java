@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.model.Customer;
 import com.example.demo.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,26 +18,26 @@ public class CustomerController {
 
     @PostMapping()
     public ResponseEntity<String> insert(@RequestBody Customer customer) {
-        return customerService.insert(customer);
+        return ResponseEntity.status(HttpStatus.CREATED).body(customerService.insert(customer));
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Customer> selectOne(@PathVariable int id) {
-        return customerService.getById(id);
+        return ResponseEntity.status(HttpStatus.OK).body(customerService.getById(id));
     }
 
     @PutMapping()
     public ResponseEntity<String> update(@RequestBody Customer customer){
-        return customerService.update(customer);
+        return ResponseEntity.status(HttpStatus.OK).body(customerService.update(customer));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> delete(@PathVariable int id) {
-        return customerService.delete(id);
+        return ResponseEntity.status(HttpStatus.OK).body(customerService.delete(id));
     }
 
     @PostMapping("/batch")
     public ResponseEntity<String> insertList(@RequestBody List<Customer> customerList) {
-        return customerService.insertList(customerList);
+        return ResponseEntity.status(HttpStatus.OK).body(customerService.insertList(customerList));
     }
 }
