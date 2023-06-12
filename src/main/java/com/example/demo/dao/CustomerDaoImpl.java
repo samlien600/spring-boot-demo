@@ -40,7 +40,6 @@ public class CustomerDaoImpl implements CustomerDao {
 
     @Override
     public String insert(@RequestBody Customer customer) {
-        System.out.println("insert ~");
         Map<String,Object> map = new HashMap<String, Object>();
         map.put("name", customer.getName());
         KeyHolder keyHolder = new GeneratedKeyHolder();

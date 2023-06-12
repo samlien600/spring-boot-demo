@@ -28,7 +28,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public String insertList(List<Customer> customerList) {
         if (customerList.size() > 10) {
-            return "can not insert greater than 10 row";
+            throw new IllegalArgumentException("can not insert greater than 10 row");
         }
         return customerDao.insertList(customerList);
     }

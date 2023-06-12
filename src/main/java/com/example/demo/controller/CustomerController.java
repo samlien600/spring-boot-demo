@@ -38,6 +38,6 @@ public class CustomerController {
 
     @PostMapping("/batch")
     public ResponseEntity<String> insertList(@RequestBody List<Customer> customerList) {
-        return ResponseEntity.status(HttpStatus.OK).body(customerService.insertList(customerList));
+        return ResponseEntity.status(HttpStatus.CREATED).body(customerService.insertList(customerList));
     }
 }
