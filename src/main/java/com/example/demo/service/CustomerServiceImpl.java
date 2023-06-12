@@ -17,7 +17,12 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Customer getById(Integer id) {
-        return customerDao.getById(id);
+        Customer customer = customerDao.getById(id);
+        StringBuilder sb = new StringBuilder();
+        sb.append(customer.getName()).append("_demo");
+
+        customer.setName(sb.toString());
+        return customer;
     }
 
     @Override

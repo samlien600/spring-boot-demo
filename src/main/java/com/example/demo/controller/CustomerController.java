@@ -40,4 +40,5 @@ public class CustomerController {
     public ResponseEntity<String> insertList(@RequestBody List<Customer> customerList) {
         return ResponseEntity.status(HttpStatus.CREATED).body(customerService.insertList(customerList));
     }
+
 }
