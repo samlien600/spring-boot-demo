@@ -12,14 +12,14 @@ import org.springframework.stereotype.Component;
 public class CalculateSpentTime {
     private static Logger log = LoggerFactory.getLogger(CalculateSpentTime.class);
 
-    @Around("execution(* com.example.demo.controller.CustomerController.*(..))")
+    @Around("execution(public * com.example.demo.controller.CustomerController.*(..))")
     public Object around(ProceedingJoinPoint pjp) throws Throwable {
         long startTime = System.currentTimeMillis();
         Object obj = pjp.proceed();
         long spentTime = System.currentTimeMillis() - startTime;
-        //if (spentTime > 2000L) {
+        if (spentTime > 2000L) {
             log.warn("{}() - cost time：{} ms", pjp.getSignature().getName(), spentTime);
-        //}
+        }
 
         return obj;
     }
