@@ -33,7 +33,7 @@ class CustomerControllerTest {
         MvcResult mvcResult = mockMvn.perform(requestBuilder)
                 .andExpect(MockMvcResultMatchers.status().is(200))
                 .andExpect(jsonPath("$.id", equalTo(1)))
-                .andExpect(jsonPath("$.name", equalTo("sam")))
+                .andExpect(jsonPath("$.name", equalTo("sam_demo")))
                 .andReturn();
         String body = mvcResult.getResponse().getContentAsString();
         log.info("response body：" + body);

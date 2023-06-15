@@ -4,3 +4,9 @@ spring:
     username: ${username}
     url: jdbc:mysql://localhost:3306/${database}?serverTimezone=Asia/Taipei&characterEncoding=utf-8
     password: ${password}
+  jpa:
+    show-sql: true
+logging:
+  config: classpath:log4j2.xml
+server:
+  port: ${port}

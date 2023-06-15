@@ -6,8 +6,7 @@ import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
-public interface CustomerDao {
-
+public interface CustomerDao  {
     Customer getById(Integer studentId);
     String insert(Customer customer);
     String insertList(List<Customer> customerList);
