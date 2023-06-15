@@ -14,7 +14,7 @@
 			```
 	* update application.propertirs
 	* path：..\src\main\resources\application.propertirs
-	* update your datasource database、username、password
+	* update your datasource database、username、password、port
 
 2. run spring boot
 	* run only once
